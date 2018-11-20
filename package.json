@@ -1,25 +1,20 @@
 {
   "name": "page-of-clubs",
   "version": "1.0.0",
-  "description": "An open source book club application",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Lore Hill",
-  "license": "MIT",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.3.8",
-    "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
-    "validator": "^10.8.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loreerol/page-of-clubs.git"
   },
-  "devDependencies": {
-    "nodemon": "^1.18.5"
-  }
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/loreerol/page-of-clubs/issues"
+  },
+  "homepage": "https://github.com/loreerol/page-of-clubs#readme",
+  "devDependencies": {}
 }
