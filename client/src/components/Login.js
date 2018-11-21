@@ -2,6 +2,20 @@ import React from "react";
 import logo from "/images/page-of-clubs.jpg";
 
 class Login extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "User",
+      password: "",
+      errors: {}
+    };
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
     return (
       <div className="login-page">
@@ -13,8 +27,9 @@ class Login extends React.Component {
           <form className="login-form">
             <input
               type="text"
-              name="search"
-              required=""
+              name="password"
+              value={this.state.password}
+              onChange={this.onChange}
               className="input-text-textarea"
             />
             <button
