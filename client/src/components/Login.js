@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "/images/page-of-clubs.jpg";
+import axios from "axios";
 
 class Login extends React.Component {
   constructor() {
@@ -10,10 +11,25 @@ class Login extends React.Component {
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const userLogin = {
+      name: this.state.name,
+      password: this.state.password
+    };
+
+    axios
+      .post("http://localhost:5000/api/auth/login", userLogin)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -24,7 +40,7 @@ class Login extends React.Component {
         </div>
 
         <div className="login-feild input-text">
-          <form className="login-form">
+          <form className="login-form" onSubmit={this.onSubmit}>
             <input
               type="text"
               name="password"
