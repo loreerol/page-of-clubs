@@ -1,13 +1,18 @@
 import React from "react";
 import { Route, NavLink, HashRouter } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store';
+
 import Chat from "./Chat";
 import News from "./News";
 import Contact from "./Contact";
 import Info from "./Info";
 
+
 class App extends React.Component {
   render() {
     return (
+      <Provider store={ store }>
       <HashRouter>
         <div className="app">
           <div className="side-nav">
@@ -66,6 +71,7 @@ class App extends React.Component {
           </div>
         </div>
       </HashRouter>
+      </Provider>
     );
   }
 }

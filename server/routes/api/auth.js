@@ -6,7 +6,7 @@ const keys = require("../../config/keys");
   const passport = require("passport");
 
 // Load Input Validation
-const validateAddBook = require("../../validation/addBook");
+// const validateAddBook = require("../../validation/addBook");
 
 // Load User model
 const User = require("../../models/User");
@@ -43,7 +43,7 @@ router.post("/register", (req, res) => {
   });
 });
 
-// @route   GET api/auth/login
+// @route   POST api/auth/login
 // @desc    Login / Return JWT
 // @access  Public
 

@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "/images/page-of-clubs.jpg";
 import axios from "axios";
+import classnames from "classnames";
 
 class Login extends React.Component {
   constructor() {
@@ -29,10 +30,14 @@ class Login extends React.Component {
     axios
       .post("http://localhost:5000/api/auth/login", userLogin)
       .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+      .catch(err => this.setState({errors: err.response.data}));
   }
 
   render() {
+
+    const { errors } = this.state;
+
+
     return (
       <div className="login-page">
         <div className="login-page-logo">
@@ -42,12 +47,16 @@ class Login extends React.Component {
         <div className="login-feild input-text">
           <form className="login-form" onSubmit={this.onSubmit}>
             <input
+              className={classnames("input-text-textarea", {
+                'is-invalid': errors.password
+              })}
               type="text"
               name="password"
               value={this.state.password}
               onChange={this.onChange}
-              className="input-text-textarea"
+
             />
+            {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
             <button
               type="submit"
               className="login-page-submit input-text-submit"

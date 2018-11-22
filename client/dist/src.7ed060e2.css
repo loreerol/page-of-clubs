@@ -215,6 +215,10 @@ body {
 }
 
 /*login page */
+
+.is-invalid{
+  border-color: red;
+}
 .login-page {
   background-color: #dde7cc;
   height: 100vh;

@@ -47559,7 +47559,62 @@ module.exports.default = axios;
 
 },{"./utils":"../node_modules/axios/lib/utils.js","./helpers/bind":"../node_modules/axios/lib/helpers/bind.js","./core/Axios":"../node_modules/axios/lib/core/Axios.js","./defaults":"../node_modules/axios/lib/defaults.js","./cancel/Cancel":"../node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"../node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"../node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"../node_modules/axios/lib/helpers/spread.js"}],"../node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"../node_modules/axios/lib/axios.js"}],"../src/components/Login.js":[function(require,module,exports) {
+},{"./lib/axios":"../node_modules/axios/lib/axios.js"}],"../node_modules/classnames/index.js":[function(require,module,exports) {
+var define;
+/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+},{}],"../src/components/Login.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47572,6 +47627,8 @@ var _react = _interopRequireDefault(require("react"));
 var _pageOfClubs = _interopRequireDefault(require("/images/page-of-clubs.jpg"));
 
 var _axios = _interopRequireDefault(require("axios"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47624,6 +47681,8 @@ function (_React$Component) {
   }, {
     key: "onSubmit",
     value: function onSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
       var userLogin = {
         name: this.state.name,
@@ -47633,12 +47692,15 @@ function (_React$Component) {
       _axios.default.post("http://localhost:5000/api/auth/login", userLogin).then(function (res) {
         return console.log(res.data);
       }).catch(function (err) {
-        return console.log(err);
+        return _this2.setState({
+          errors: err.response.data
+        });
       });
     }
   }, {
     key: "render",
     value: function render() {
+      var errors = this.state.errors;
       return _react.default.createElement("div", {
         className: "login-page"
       }, _react.default.createElement("div", {
@@ -47652,12 +47714,16 @@ function (_React$Component) {
         className: "login-form",
         onSubmit: this.onSubmit
       }, _react.default.createElement("input", {
+        className: (0, _classnames.default)("input-text-textarea", {
+          'is-invalid': errors.password
+        }),
         type: "text",
         name: "password",
         value: this.state.password,
-        onChange: this.onChange,
-        className: "input-text-textarea"
-      }), _react.default.createElement("button", {
+        onChange: this.onChange
+      }), errors.name && _react.default.createElement("div", {
+        className: "invalid-feedback"
+      }, errors.name), _react.default.createElement("button", {
         type: "submit",
         className: "login-page-submit input-text-submit"
       }, "\uD83D\uDD12"))));
@@ -47669,7 +47735,7 @@ function (_React$Component) {
 
 var _default = Login;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","/images/page-of-clubs.jpg":"images/page-of-clubs.jpg","axios":"../node_modules/axios/index.js"}],"../src/components/Chat.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","/images/page-of-clubs.jpg":"images/page-of-clubs.jpg","axios":"../node_modules/axios/index.js","classnames":"../node_modules/classnames/index.js"}],"../src/components/Chat.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48173,7 +48239,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61208" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49358" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
