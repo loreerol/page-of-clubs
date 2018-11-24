@@ -1,7 +1,11 @@
 import React from "react";
 import logo from "/images/page-of-clubs.jpg";
-import axios from "axios";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
+
+// import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
   constructor() {
@@ -11,8 +15,18 @@ class Login extends React.Component {
       password: "",
       errors: {}
     };
+
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillRecieveProps(nextProps) {
+    if(nextProps.auth.isAuthenticated) {
+      this.props.history.push("/app");
+    }
+    if(nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   onChange(e) {
@@ -22,21 +36,16 @@ class Login extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const userLogin = {
+    const userData = {
       name: this.state.name,
       password: this.state.password
     };
 
-    axios
-      .post("http://localhost:5000/api/auth/login", userLogin)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({errors: err.response.data}));
+    this.props.loginUser(userData, this.props.history);
   }
 
   render() {
-
     const { errors } = this.state;
-
 
     return (
       <div className="login-page">
@@ -48,15 +57,16 @@ class Login extends React.Component {
           <form className="login-form" onSubmit={this.onSubmit}>
             <input
               className={classnames("input-text-textarea", {
-                'is-invalid': errors.password
+                "is-invalid": errors.password
               })}
               type="text"
               name="password"
               value={this.state.password}
               onChange={this.onChange}
-
             />
-            {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+            {errors.password && (
+              <div className="invalid-feedback">{errors.password}</div>
+            )}
             <button
               type="submit"
               className="login-page-submit input-text-submit"
@@ -70,4 +80,18 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);

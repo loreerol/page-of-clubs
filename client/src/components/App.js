@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
-import store from './store';
+import store from '../store';
 
 import Chat from "./Chat";
 import News from "./News";
@@ -12,7 +12,7 @@ import Info from "./Info";
 class App extends React.Component {
   render() {
     return (
-      <Provider store={ store }>
+      <Provider store={ store } key="provider">
       <HashRouter>
         <div className="app">
           <div className="side-nav">
