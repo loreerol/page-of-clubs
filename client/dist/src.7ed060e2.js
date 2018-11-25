@@ -50092,8 +50092,8 @@ function (_React$Component) {
   }
 
   _createClass(Login, [{
-    key: "componentWillRecieveProps",
-    value: function componentWillRecieveProps(nextProps) {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
       if (nextProps.auth.isAuthenticated) {
         this.props.history.push("/app");
       }
@@ -50693,10 +50693,17 @@ var _App = _interopRequireDefault(require("./App"));
 
 var _NotFound = _interopRequireDefault(require("./NotFound"));
 
+var _reactRedux = require("react-redux");
+
+var _store = _interopRequireDefault(require("../store"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Router = function Router() {
-  return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
+  return _react.default.createElement(_reactRedux.Provider, {
+    store: _store.default,
+    key: "provider"
+  }, _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
     exact: "exact",
     path: "/",
     component: _Login.default
@@ -50706,12 +50713,12 @@ var Router = function Router() {
     component: _App.default
   }), _react.default.createElement(_reactRouterDom.Route, {
     component: _NotFound.default
-  })));
+  }))));
 };
 
 var _default = Router;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/es/index.js","./Login":"../src/components/Login.js","./App":"../src/components/App.js","./NotFound":"../src/components/NotFound.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/es/index.js","./Login":"../src/components/Login.js","./App":"../src/components/App.js","./NotFound":"../src/components/NotFound.js","react-redux":"../node_modules/react-redux/es/index.js","../store":"../src/store.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -50833,7 +50840,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49280" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53315" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
