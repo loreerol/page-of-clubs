@@ -50173,156 +50173,7 @@ var _default = (0, _reactRedux.connect)(mapStateToProps, {
 })(Login);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","/images/page-of-clubs.jpg":"images/page-of-clubs.jpg","prop-types":"../node_modules/prop-types/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/authActions":"../src/actions/authActions.js","classnames":"../node_modules/classnames/index.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function createThunkMiddleware(extraArgument) {
-  return function (_ref) {
-    var dispatch = _ref.dispatch,
-        getState = _ref.getState;
-    return function (next) {
-      return function (action) {
-        if (typeof action === 'function') {
-          return action(dispatch, getState, extraArgument);
-        }
-
-        return next(action);
-      };
-    };
-  };
-}
-
-var thunk = createThunkMiddleware();
-thunk.withExtraArgument = createThunkMiddleware;
-var _default = thunk;
-exports.default = _default;
-},{}],"../src/validation/is-empty.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-var isEmpty = function isEmpty(value) {
-  return value === undefined || value === null || _typeof(value) === "object" && Object.keys(value).length === 0 || typeof value === "string" && value.trim().length === 0;
-};
-
-var _default = isEmpty;
-exports.default = _default;
-},{}],"../src/reducers/authReducer.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _default;
-
-var _isEmpty = _interopRequireDefault(require("../validation/is-empty"));
-
-var _types = require("../actions/types");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var initialState = {
-  isAuthenticated: false,
-  user: {}
-};
-
-function _default() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case _types.SET_CURRENT_USER:
-      return _objectSpread({}, state, {
-        isAuthenticated: !(0, _isEmpty.default)(action.payload),
-        user: action.payload
-      });
-
-    default:
-      return state;
-  }
-}
-},{"../validation/is-empty":"../src/validation/is-empty.js","../actions/types":"../src/actions/types.js"}],"../src/reducers/errorReducer.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _default;
-
-var _types = require("../actions/types");
-
-var initialState = {};
-
-function _default() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case _types.GET_ERRORS:
-      return action.payload;
-
-    default:
-      return state;
-  }
-}
-},{"../actions/types":"../src/actions/types.js"}],"../src/reducers/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _redux = require("redux");
-
-var _authReducer = _interopRequireDefault(require("./authReducer"));
-
-var _errorReducer = _interopRequireDefault(require("./errorReducer"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = (0, _redux.combineReducers)({
-  auth: _authReducer.default,
-  errors: _errorReducer.default
-});
-
-exports.default = _default;
-},{"redux":"../node_modules/redux/es/redux.js","./authReducer":"../src/reducers/authReducer.js","./errorReducer":"../src/reducers/errorReducer.js"}],"../src/store.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _redux = require("redux");
-
-var _reduxThunk = _interopRequireDefault(require("redux-thunk"));
-
-var _reducers = _interopRequireDefault(require("./reducers"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var initialState = {};
-var middleware = [_reduxThunk.default];
-var store = (0, _redux.createStore)(_reducers.default, initialState, (0, _redux.compose)(_redux.applyMiddleware.apply(void 0, middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
-var _default = store;
-exports.default = _default;
-},{"redux":"../node_modules/redux/es/redux.js","redux-thunk":"../node_modules/redux-thunk/es/index.js","./reducers":"../src/reducers/index.js"}],"../src/components/Chat.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","/images/page-of-clubs.jpg":"images/page-of-clubs.jpg","prop-types":"../node_modules/prop-types/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/authActions":"../src/actions/authActions.js","classnames":"../node_modules/classnames/index.js"}],"../src/components/Chat.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50546,10 +50397,6 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _reactRedux = require("react-redux");
-
-var _store = _interopRequireDefault(require("../store"));
-
 var _Chat = _interopRequireDefault(require("./Chat"));
 
 var _News = _interopRequireDefault(require("./News"));
@@ -50592,63 +50439,63 @@ function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement(_reactRedux.Provider, {
-        store: _store.default,
-        key: "provider"
-      }, _react.default.createElement(_reactRouterDom.HashRouter, null, _react.default.createElement("div", {
-        className: "app"
-      }, _react.default.createElement("div", {
-        className: "side-nav"
-      }, _react.default.createElement("div", {
-        className: "main-page-logo"
-      }, _react.default.createElement("h1", null, "Page of Clubs")), _react.default.createElement("div", {
-        className: "book-nav"
-      }, _react.default.createElement("div", {
-        className: "menu-items side-nav-menu"
-      }, _react.default.createElement("ul", null, _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.NavLink, {
-        to: "/Chat"
-      }, "Chat")))), _react.default.createElement("div", {
-        className: "books"
-      }), _react.default.createElement("div", {
-        className: "pages"
-      }, _react.default.createElement("h2", null, "1 2 3 .. 10")))), _react.default.createElement("div", {
-        className: "content"
-      }, _react.default.createElement("div", {
-        className: "top-nav"
-      }, _react.default.createElement("div", {
-        className: "top-nav-search input-text"
-      }, _react.default.createElement("form", null, _react.default.createElement("input", {
-        type: "text",
-        name: "search",
-        required: "",
-        className: "input-text-textarea"
-      }), _react.default.createElement("button", {
-        type: "submit",
-        className: "input-text-submit"
-      }, "\uD83D\uDD0D"))), _react.default.createElement("div", {
-        className: "top-nav-menu menu-items"
-      }, _react.default.createElement("ul", null, _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.NavLink, {
-        to: "/"
-      }, "News")), _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.NavLink, {
-        to: "/Contact"
-      }, "Contact")), _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.NavLink, {
-        to: "/Info"
-      }, "Info"))))), _react.default.createElement("div", {
-        className: "main"
-      }, _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
-        path: "/",
-        component: _News.default
-      }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/chat",
-        component: _Chat.default
-      }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/contact",
-        component: _Contact.default
-      }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/Info",
-        component: _Info.default
-      }))))));
+      return (// <Provider store={store} key="provider">
+        _react.default.createElement(_reactRouterDom.HashRouter, null, _react.default.createElement("div", {
+          className: "app"
+        }, _react.default.createElement("div", {
+          className: "side-nav"
+        }, _react.default.createElement("div", {
+          className: "main-page-logo"
+        }, _react.default.createElement("h1", null, "Page of Clubs")), _react.default.createElement("div", {
+          className: "book-nav"
+        }, _react.default.createElement("div", {
+          className: "menu-items side-nav-menu"
+        }, _react.default.createElement("ul", null, _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.NavLink, {
+          to: "/Chat"
+        }, "Chat")))), _react.default.createElement("div", {
+          className: "books"
+        }), _react.default.createElement("div", {
+          className: "pages"
+        }, _react.default.createElement("h2", null, "1 2 3 .. 10")))), _react.default.createElement("div", {
+          className: "content"
+        }, _react.default.createElement("div", {
+          className: "top-nav"
+        }, _react.default.createElement("div", {
+          className: "top-nav-search input-text"
+        }, _react.default.createElement("form", null, _react.default.createElement("input", {
+          type: "text",
+          name: "search",
+          required: "",
+          className: "input-text-textarea"
+        }), _react.default.createElement("button", {
+          type: "submit",
+          className: "input-text-submit"
+        }, "\uD83D\uDD0D"))), _react.default.createElement("div", {
+          className: "top-nav-menu menu-items"
+        }, _react.default.createElement("ul", null, _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.NavLink, {
+          to: "/"
+        }, "News")), _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.NavLink, {
+          to: "/Contact"
+        }, "Contact")), _react.default.createElement("li", null, _react.default.createElement(_reactRouterDom.NavLink, {
+          to: "/Info"
+        }, "Info"))))), _react.default.createElement("div", {
+          className: "main"
+        }, _react.default.createElement(_reactRouterDom.Route, {
+          exact: true,
+          path: "/",
+          component: _News.default
+        }), _react.default.createElement(_reactRouterDom.Route, {
+          path: "/chat",
+          component: _Chat.default
+        }), _react.default.createElement(_reactRouterDom.Route, {
+          path: "/contact",
+          component: _Contact.default
+        }), _react.default.createElement(_reactRouterDom.Route, {
+          path: "/Info",
+          component: _Info.default
+        }))))) // </Provider>
+
+      );
     }
   }]);
 
@@ -50657,7 +50504,7 @@ function (_React$Component) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/es/index.js","react-redux":"../node_modules/react-redux/es/index.js","../store":"../src/store.js","./Chat":"../src/components/Chat.js","./News":"../src/components/News.js","./Contact":"../src/components/Contact.js","./Info":"../src/components/Info.js"}],"../src/components/NotFound.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/es/index.js","./Chat":"../src/components/Chat.js","./News":"../src/components/News.js","./Contact":"../src/components/Contact.js","./Info":"../src/components/Info.js"}],"../src/components/NotFound.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50675,7 +50522,156 @@ var NotFound = function NotFound() {
 
 var _default = NotFound;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"../src/components/Router.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function createThunkMiddleware(extraArgument) {
+  return function (_ref) {
+    var dispatch = _ref.dispatch,
+        getState = _ref.getState;
+    return function (next) {
+      return function (action) {
+        if (typeof action === 'function') {
+          return action(dispatch, getState, extraArgument);
+        }
+
+        return next(action);
+      };
+    };
+  };
+}
+
+var thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+var _default = thunk;
+exports.default = _default;
+},{}],"../src/validation/is-empty.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var isEmpty = function isEmpty(value) {
+  return value === undefined || value === null || _typeof(value) === "object" && Object.keys(value).length === 0 || typeof value === "string" && value.trim().length === 0;
+};
+
+var _default = isEmpty;
+exports.default = _default;
+},{}],"../src/reducers/authReducer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+var _isEmpty = _interopRequireDefault(require("../validation/is-empty"));
+
+var _types = require("../actions/types");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var initialState = {
+  isAuthenticated: false,
+  user: {}
+};
+
+function _default() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _types.SET_CURRENT_USER:
+      return _objectSpread({}, state, {
+        isAuthenticated: !(0, _isEmpty.default)(action.payload),
+        user: action.payload
+      });
+
+    default:
+      return state;
+  }
+}
+},{"../validation/is-empty":"../src/validation/is-empty.js","../actions/types":"../src/actions/types.js"}],"../src/reducers/errorReducer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+var _types = require("../actions/types");
+
+var initialState = {};
+
+function _default() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _types.GET_ERRORS:
+      return action.payload;
+
+    default:
+      return state;
+  }
+}
+},{"../actions/types":"../src/actions/types.js"}],"../src/reducers/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _redux = require("redux");
+
+var _authReducer = _interopRequireDefault(require("./authReducer"));
+
+var _errorReducer = _interopRequireDefault(require("./errorReducer"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = (0, _redux.combineReducers)({
+  auth: _authReducer.default,
+  errors: _errorReducer.default
+});
+
+exports.default = _default;
+},{"redux":"../node_modules/redux/es/redux.js","./authReducer":"../src/reducers/authReducer.js","./errorReducer":"../src/reducers/errorReducer.js"}],"../src/store.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _redux = require("redux");
+
+var _reduxThunk = _interopRequireDefault(require("redux-thunk"));
+
+var _reducers = _interopRequireDefault(require("./reducers"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var initialState = {};
+var middleware = [_reduxThunk.default];
+var store = (0, _redux.createStore)(_reducers.default, initialState, (0, _redux.compose)(_redux.applyMiddleware.apply(void 0, middleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+var _default = store;
+exports.default = _default;
+},{"redux":"../node_modules/redux/es/redux.js","redux-thunk":"../node_modules/redux-thunk/es/index.js","./reducers":"../src/reducers/index.js"}],"../src/components/Router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50840,7 +50836,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53315" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62630" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
