@@ -1,4 +1,4 @@
-article,
+/* article,
 aside,
 details,
 figcaption,
@@ -105,8 +105,8 @@ button,
 input {
   line-height: normal;
 }
-button,html input[type=button],/* 1 */input[type=reset],input[type=submit] {
-  -webkit-appearance: button;
+button,html input[type=button],/* 1 input[type=reset],input[type=submit] {
+  /* -webkit-appearance: button;
   cursor: pointer;
 }
 button[disabled],
@@ -153,23 +153,23 @@ input::-moz-focus-inner {
   content: "";
   clear: both;
   height: 0;
-}
-* {
+} */
+/* *{
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
+}  */
 /* Reset ends */
 
 /* Fonts */
-@font-face {
+/* @font-face {
   font-family: "Cute";
-  src: url("cute.33c34cf3.woff") format("woff");
-}
+  src: url("./fonts/cute.woff") format("woff");
+} */
 
 /*General */
 
-html,
+/* html,
 body {
   margin: 0px;
   padding: 0px;
@@ -177,10 +177,10 @@ body {
 
 body {
   display: inline;
-}
+} */
 
 /*General Search bar */
-
+/*
 .input-text form {
   width: 100%;
   height: 100%;
@@ -212,11 +212,11 @@ body {
   border-radius: 0px 20px 20px 0px;
   cursor: pointer;
   font-size: 1em;
-}
+} */
 
 /*login page */
-
-.is-invalid{
+/*
+.is-invalid {
   border-color: red;
 }
 .login-page {
@@ -240,11 +240,11 @@ body {
 
 .login-form {
   margin: auto;
-}
+} */
 
 /* App */
 
-.app {
+/* .app {
   background-color: #f2e8f0;
   height: 100vh;
   width: 100vw;
@@ -321,10 +321,10 @@ body {
   width: 100%;
   color: blue;
   font-size: 0.6em;
-}
+} */
 
 /* Book Nav*/
-.side-nav {
+/* .side-nav {
   height: 100%;
   width: 20%;
 }
@@ -344,14 +344,16 @@ body {
 }
 .main-page-logo img {
   height: 100%;
-}
+} */
 
 /* Main */
-.content {
+/* .content {
   width: 80%;
   font-family: "cute";
 }
 
 .main h1 {
   color: blue;
-}
+} */
+
+/* OLD CSS END */
