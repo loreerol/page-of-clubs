@@ -4,7 +4,10 @@ class News extends React.Component {
   render() {
     return (
       <div>
-        <h1>News</h1>
+        <div className="title-text">
+          <h1> News</h1>
+        </div>
+        <p>News</p>
       </div>
     );
   }

@@ -54,9 +54,12 @@ class Login extends React.Component {
         </div>
 
         <div className="login-feild input-text">
-          <form className="login-form" onSubmit={this.onSubmit}>
+          <form className="form-group" onSubmit={this.onSubmit}>
             <input
-              className={classnames("input-text-textarea", {
+              id="passwordinput"
+              name="passwordinput"
+              type="password"
+              className={classnames("form-control", "input-md", {
                 "is-invalid": errors.password
               })}
               type="text"
@@ -67,12 +70,6 @@ class Login extends React.Component {
             {errors.password && (
               <div className="invalid-feedback">{errors.password}</div>
             )}
-            <button
-              type="submit"
-              className="login-page-submit input-text-submit"
-            >
-              🔒
-            </button>
           </form>
         </div>
       </div>
