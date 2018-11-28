@@ -372,6 +372,11 @@ body {
 .navbarbrand {
   font-family: "Cute";
 }
+
+.navlink {
+  color: black;
+  padding: 10px;
+}
 /* Login Page */
 
 .is-invalid {
@@ -426,6 +431,20 @@ body {
   border: 5px double black;
   border-left: 0px;
   width: 100%;
+  padding-top: 1vw;
+  padding-left: 3vw;
+}
+
+/* Contact */
+
+.contact-form {
+  padding: 20px;
+  margin: 10px;
+  max-width: 700px;
+}
+
+.contact-input {
+  margin-top: 10px;
 }
 
 /*mobile styles*/
@@ -437,5 +456,7 @@ body {
   .content {
     width: 0px;
     border: 0px;
+    display: none;
+    overflow: hidden;
   }
 }

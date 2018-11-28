@@ -56,13 +56,24 @@ class App extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink to="/">News</NavLink>
+                  <NavLink className="navlink" to="/">
+                    News
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to="/Contact">Contact</NavLink>
+                  <NavLink className="navlink" to="/Chat">
+                    Chat
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to="/Logout">Logout</NavLink>
+                  <NavLink className="navlink" to="/Contact">
+                    Contact
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className="navlink" to="/Logout">
+                    Logout
+                  </NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
