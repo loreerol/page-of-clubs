@@ -48,7 +48,7 @@ class App extends React.Component {
     return (
       <HashRouter>
         <div className="app">
-          <Navbar light expand="md">
+          <Navbar className="navbar" light expand="md">
             <NavbarBrand className="navbarbrand" href="/">
               Page of Clubs
             </NavbarBrand>

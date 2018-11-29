@@ -50215,7 +50215,32 @@ function (_React$Component) {
   _createClass(Chat, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement("h1", null, "Chat"));
+      return _react.default.createElement("div", {
+        className: "chat-app"
+      }, _react.default.createElement("div", {
+        class: "chat-wrapper"
+      }, _react.default.createElement("div", {
+        class: "title"
+      }), _react.default.createElement("div", {
+        class: "chat-messages-wrap"
+      }, _react.default.createElement("ul", {
+        class: "chat-messages"
+      })), _react.default.createElement("form", {
+        action: "",
+        class: "chat"
+      }, _react.default.createElement("input", {
+        type: "text",
+        id: "nameInput",
+        placeholder: "Anon"
+      }), _react.default.createElement("input", {
+        type: "text",
+        id: "messageInput",
+        placeholder: "Type a Message...",
+        required: true
+      }), _react.default.createElement("input", {
+        type: "submit",
+        value: "Send"
+      }))));
     }
   }]);
 
@@ -60392,6 +60417,7 @@ function (_React$Component) {
       return _react.default.createElement(_reactRouterDom.HashRouter, null, _react.default.createElement("div", {
         className: "app"
       }, _react.default.createElement(_reactstrap.Navbar, {
+        className: "navbar",
         light: true,
         expand: "md"
       }, _react.default.createElement(_reactstrap.NavbarBrand, {
@@ -60807,7 +60833,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56163" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54313" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
